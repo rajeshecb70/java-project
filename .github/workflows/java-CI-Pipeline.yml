@@ -29,27 +29,27 @@ jobs:
 
       # Step 3: Navigate to project directory
       - name: Navigate to project directory
-        working-directory: java-project/sysinfo
+        working-directory: sysinfo
         run: pwd
 
       # Step 4: Install dependencies
       - name: Install dependencies
-        working-directory: java-project/sysinfo
+        working-directory: sysinfo
         run: sudo apt-get update && sudo apt-get install -y wget unzip maven
 
       # Step 5: Validate Maven project
       - name: Validate Maven project
-        working-directory: java-project/sysinfo
+        working-directory: sysinfo
         run: mvn validate
 
       # Step 6: Build Maven project
       - name: Build Maven project
-        working-directory: java-project/sysinfo
+        working-directory: sysinfo
         run: mvn clean install
 
       # Step 7: Run tests
       - name: Run tests
-        working-directory: java-project/sysinfo
+        working-directory: sysinfo
         run: mvn test
 
       # Step 8: Docker login to DockerHub
@@ -61,7 +61,7 @@ jobs:
 
       # Step 9: Build and push Docker image
       - name: Build and push Docker image
-        working-directory: java-project/sysinfo
+        working-directory: sysinfo
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE }}:${{ env.TAG }} .
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE }}:${{ env.TAG }}
