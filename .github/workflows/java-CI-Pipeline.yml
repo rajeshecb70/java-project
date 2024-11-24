@@ -47,10 +47,10 @@ jobs:
         working-directory: sysinfo
         run: mvn clean install
 
-      # Step 7: Run tests
-      - name: Run tests
-        working-directory: sysinfo
-        run: mvn test
+#      # Step 7: Run tests
+#      - name: Run tests
+#        working-directory: sysinfo
+#        run: mvn test
 
       # Step 8: Docker login to DockerHub
       - name: Docker login
