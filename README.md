@@ -1,4 +1,4 @@
-## java CI Pipeline with Docker and Azure Deployment
+## Java CI Pipeline with Docker and Azure Deployment
 
 ### Project Objective
 
