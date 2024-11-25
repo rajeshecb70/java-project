@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 env:
-  TAG: 3.0.0
+  TAG: 3.1.0
   DOCKER_IMAGE: javaproject
 
 jobs:
@@ -73,6 +73,10 @@ jobs:
 
           # Connect to Azure server
           sshpass -p "${{ secrets.AZURE_SERVER_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${{ secrets.AZURE_SERVER_USERNAME }}@${{ secrets.AZURE_SERVER_IP }} << 'EOF'
+          echo "Connection Successful"
+          hostname
+          ls -la
+          whoami
 
           # Set environment variables
           export TAG=${{ env.TAG }}
