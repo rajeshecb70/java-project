@@ -7,7 +7,7 @@ endif
 # Variables
 DOCKER_USER = rajeshecb70
 DOCKER_IMAGE = javaproject
-TAG = 23.0.0
+TAG = 3.1.0
 
 # Default target
 .DEFAULT_GOAL := help

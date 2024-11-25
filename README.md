@@ -1,4 +1,4 @@
-## Node.js CI Pipeline with Docker and Azure Deployment
+## java CI Pipeline with Docker and Azure Deployment
 
 ### Project Objective
 
@@ -19,14 +19,15 @@ Before using this project, ensure the following prerequisites are set up:
 #### 3. **GitHub Secrets Configuration**
    You must configure the following secrets in your GitHub repository to securely store credentials:
    - `DOCKERHUB_USERNAME`: Your DockerHub username.
-   - `DOCKERHUB_TOKEN`: Your DockerHub access token.
+   - `DOCKERHUB_TOKEN`: Your DockerHub access token/password.
    - `AZURE_SERVER_USERNAME`: The username for your Azure server.
    - `AZURE_SERVER_PASSWORD`: The password for SSH access to the Azure server.
    - `AZURE_SERVER_IP`: The IP address of your Azure server.
+   - `DOCKER_USER`: This is the docker reponame.
 
 #### 4. **Makefile**
    The repository includes a `Makefile` that automates common tasks. Ensure it includes:
-   - `make install`: Installs the required dependencies for the Node.js project.
+   - `make install`: Installs the required dependencies for the java project.
    - `make test`: Runs unit and integration tests to ensure the application functions correctly.
    - `make docker-build`: Build the docker image(artifact) using the Dockerfile and tag it.
    - `make docker-push`: Push the docker image (artifact) in dockerHub.
@@ -39,7 +40,7 @@ Before using this project, ensure the following prerequisites are set up:
 
    The pipeline consists of the following steps:
    1. **Checkout code**: Pulls the latest code from the repository.
-   2. **Set up jdk environment**: Sets up Jdk 21.x using the `actions/setup-node` action.
+   2. **Set up jdk environment**: Sets up Jdk 21.x using the `actions/setup-java@v3` action.
    3. **Install dependencies**: Executes `make install` to install project dependencies.
    4. **Run validate**: Executes `make validate` to run validation checks.
    5. **Run tests**: Executes `make test` to run the test suite.
@@ -50,13 +51,13 @@ Before using this project, ensure the following prerequisites are set up:
 #### 2. **Deploying to Azure**
    The CI pipeline deploys the application to Azure by SSH-ing into the server and performing the following:
    - Installing Docker (if it's not already installed).
-   - Pulling the latest Docker image from DockerHub (`rajeshecb70/javaproject:${TAG}`).
+   - Pulling the latest Docker image from DockerHub (`$DOCKER_USER/$DOCKER_IMAGE:$TAG`).
    - Running the Docker container with the latest image on port `8080`.
 
    If Docker is not installed on the Azure server, the pipeline automatically installs it using a set of commands in the workflow.
 
 #### 3. **Running the Project Locally**
-   To run the Node.js application locally, follow these steps:
+   To run the java application locally, follow these steps:
 
    1. Clone the repository:
       ```bash
@@ -83,7 +84,7 @@ Before using this project, ensure the following prerequisites are set up:
    To update the Docker image version, modify the `TAG` environment variable in the `.github/workflows/java-CI-Pipeline.yml` file. For example, change the `TAG` value from `1.0.0` to a new version like `2.0.0`:
    ```yaml
    env:
-     TAG: 2.0.0
+     TAG: 3.2.0
    ```
 #### 5. **Accessing the Application: You can access two important endpoints**
 ```yaml
@@ -93,12 +94,12 @@ http://<Server_IP>:8080/api/system/uptime
 http://<Server_IP>:8080/api/system/cpu-load
 ```
 #### 5. **Image snapshots**
-pipeline: ![Pipeline](snapshots/pipeline.png)
+Pipeline: ![Pipeline](snapshots/java-pipeline.png)
 
-Node_app on AzureServer: ![Node_app on AzureServer](snapshots/app_run_on_azure_server.png)
+Java_app on AzureServer: ![javaappResult on AzureServer](snapshots/result_inside_azure_server.png)
 
 CPU_Info: 
-![Pipeline](snapshots/CPU_info.png)
+![javaServer_cpuload.png](snapshots/javaServer_cpuload.png)
 
 Uptime_Info: 
-![Pipeline](snapshots/uptime_info.png)
+![javaServer_uptime.png](snapshots/javaServer_uptime.png)
