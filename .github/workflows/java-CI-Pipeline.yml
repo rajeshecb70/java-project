@@ -63,8 +63,8 @@ jobs:
       - name: Build and push Docker image
         working-directory: sysinfo
         run: |
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE }}:${{ env.TAG }} .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE }}:${{ env.TAG }}
+          docker build -t ${{ secrets.DOCKERHUB_REPONAME }}/${{ env.DOCKER_IMAGE }}:${{ env.TAG }} .
+          docker push ${{ secrets.DOCKERHUB_REPONAME }}/${{ env.DOCKER_IMAGE }}:${{ env.TAG }}
 
 #      # Step 10: SSH into Azure server and deploy
 #      - name: SSH into Azure server and deploy
