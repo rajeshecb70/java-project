@@ -77,7 +77,7 @@ jobs:
           # Set environment variables
           export TAG=${{ env.TAG }}
           export DOCKER_IMAGE=${{ env.DOCKER_IMAGE }}
-          export DOCKER_USER=${{ secrets.DOCKERHUB_USERNAME }}
+          export DOCKER_USER=${{ secrets.DOCKER_USER }}
 
           # Install Docker if not installed
           if ! command -v docker &> /dev/null
