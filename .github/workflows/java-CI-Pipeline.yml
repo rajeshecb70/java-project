@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 env:
-  TAG: 1.0.0
+  TAG: 2.0.0
   DOCKER_IMAGE: javaproject
 
 jobs:
