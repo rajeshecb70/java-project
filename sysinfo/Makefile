@@ -9,21 +9,6 @@ DOCKER_USER = rajeshecb70
 DOCKER_IMAGE = javaproject
 TAG = 3.1.0
 
-# Default target
-.DEFAULT_GOAL := help
-
-# Help target for listing available commands
-help:
-	@echo "Available commands:"
-	@echo "  install       - Install required dependencies (OpenJDK, Maven)"
-	@echo "  clean         - Clean and build the Maven project"
-	@echo "  validate      - Validate the Maven project"
-	@echo "  test          - Run tests for the Maven project"
-	@echo "  docker-build  - Build and tag the Docker image"
-	@echo "  docker-login  - Login to Docker Hub"
-	@echo "  docker-push   - Push Docker image to Docker Hub"
-	@echo "  docker-run    - Run the Docker container locally"
-
 # Install required dependencies
 install:
 	sudo apt-get update && sudo apt-get install -y \
